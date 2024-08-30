@@ -1,0 +1,27 @@
+[package]
+name = "win-term"
+version = "0.1.0"
+edition = "2021"
+author = "Gipson62"
+homepage = "https://github.com/Gipson62/win-term"
+repository = "https://github.com/Gipson62/win-term"
+description = "fetch terminal size in pixel"
+license = "MIT"
+
+
+[dependencies]
+windows = "0.58.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[dependencies.windows-sys]
+version = "0.59.0"
+features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_System_Threading",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_System_Console",
+    "Win32_UI_HiDpi",
+    "Win32_Graphics_Gdi"
+]
