@@ -1,6 +1,5 @@
 use windows_sys::Win32::{
     Foundation::HANDLE,
-    Graphics::Gdi::{GetDC, GetDeviceCaps, ReleaseDC, LOGPIXELSX, LOGPIXELSY},
     System::Console::{
         GetConsoleScreenBufferInfo, GetConsoleWindow, GetStdHandle, CONSOLE_SCREEN_BUFFER_INFO,
         SMALL_RECT, STD_OUTPUT_HANDLE,
@@ -37,7 +36,7 @@ fn main() {
             // A font that's 12 point size should convert to 16 pixels when you have 96 DPI
             // But we have to account for the spacing between lines ~4 pixels
             // But we have to account for the spacing between chars ~2 pixels
-            96  => (20 * info.dwSize.Y as i32, 9 * info.dwSize.X as i32),
+            96 => (20 * info.dwSize.Y as i32, 9 * info.dwSize.X as i32),
             120 => (25 * info.dwSize.Y as i32, 12 * info.dwSize.X as i32),
             144 => (32 * info.dwSize.Y as i32, 14 * info.dwSize.X as i32),
             _ => unimplemented!("This DPI shouldn't exist"),
