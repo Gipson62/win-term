@@ -24,18 +24,18 @@ pub struct FontSize {
 /// Enum to represent possible errors that can occur while getting terminal or font size.
 #[derive(Debug)]
 pub enum TerminalError {
-    NoStdHandle,         // Standard output handle not found
-    NoScreenBufferInfo,  // Failed to retrieve console screen buffer information
-    UnsupportedDpi,      // DPI setting is unsupported (not 96, 120, or 144)
+    NoStdHandle,        // Standard output handle not found
+    NoScreenBufferInfo, // Failed to retrieve console screen buffer information
+    UnsupportedDpi,     // DPI setting is unsupported (not 96, 120, or 144)
 }
 
 /// This function retrieves the font size used by the terminal in pixels.
-/// 
+///
 /// ## Assumptions:
 /// - The font size is set to 12 points, and the font type is "Consolas".
 /// - No zooming in or out has been done.
 /// - The DPI is set to either 100%, 125%, or 150% scaling (175% is not supported).
-/// 
+///
 /// ## Returns:
 /// - `Ok(FontSize)` with the font width and height in pixels.
 /// - `Err(TerminalError)` if there's an issue obtaining the standard handle or the DPI is unsupported.
@@ -54,29 +54,29 @@ pub fn get_size_of_the_font() -> Result<FontSize, TerminalError> {
         let pixel_size = match GetDpiForWindow(GetConsoleWindow()) {
             96 => FontSize {
                 width: 9,
-                height: 20
+                height: 20,
             },
             120 => FontSize {
                 width: 12,
-                height: 25
+                height: 25,
             },
             144 => FontSize {
                 width: 14,
-                height: 32
+                height: 32,
             },
-            _ => return Err(TerminalError::UnsupportedDpi)
+            _ => return Err(TerminalError::UnsupportedDpi),
         };
         return Ok(pixel_size);
     }
 }
 
 /// This function retrieves the size of the terminal window in pixels.
-/// 
+///
 /// ## Assumptions:
 /// - The font size is set to 12 points, and the font type is "Consolas".
 /// - No zooming in or out has been done.
 /// - The DPI is set to either 100%, 125%, or 150% scaling (175% is not supported).
-/// 
+///
 /// ## Returns:
 /// - `Ok(TerminalSize)` with the terminal's width and height in pixels.
 /// - `Err(TerminalError)` if there's an issue obtaining the standard handle, retrieving screen buffer info, or the DPI is unsupported.
@@ -119,9 +119,9 @@ pub fn get_size_of_the_terminal() -> Result<TerminalSize, TerminalError> {
             },
             144 => TerminalSize {
                 width: 14 * info.dwSize.X as i32,
-                height: 32 * info.dwSize.Y as i32
+                height: 32 * info.dwSize.Y as i32,
             },
-            _ => return Err(TerminalError::UnsupportedDpi)
+            _ => return Err(TerminalError::UnsupportedDpi),
         };
         return Ok(pixel_size);
     }
