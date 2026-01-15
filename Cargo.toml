@@ -1,8 +1,9 @@
 [package]
+authors = ["Gipson62 <j.h.gipson62@gmail.com>"]
 name = "win-term"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
-author = "Gipson62"
+keywords = ["windows", "terminal", "console", "size", "pixel"]
 homepage = "https://github.com/Gipson62/win-term"
 repository = "https://github.com/Gipson62/win-term"
 description = "Fetch terminal size in pixel"
